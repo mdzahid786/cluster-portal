@@ -1,4 +1,4 @@
-Backend::
+Backend:: <br>
 To insert DB into the database of mysql run below command from root directory
 sh ./cmd/cluster-portal/run.sh
 
