@@ -94,10 +94,10 @@ func UpdateCluster(storage storage.Storage)http.HandlerFunc {
 
 		id := r.PathValue("id")
 		intId, err := strconv.ParseInt(id,10, 64)
-		if int64(cluster.Id) != intId {
-			response.WriteJson(w, http.StatusBadRequest, response.GeneralError(errors.New("cluster id does not match")))
-			return
-		}
+		// if int64(cluster.Id) != intId {
+		// 	response.WriteJson(w, http.StatusBadRequest, response.GeneralError(errors.New("cluster id does not match")))
+		// 	return
+		// }
 		
 		if err!=nil {
 			response.WriteJson(w, http.StatusBadRequest, response.GeneralError(err))
@@ -111,7 +111,7 @@ func UpdateCluster(storage storage.Storage)http.HandlerFunc {
 			return
 		}
 
-		_, err = storage.UpdateCluster(cluster.Id, cluster.Servers)
+		_, err = storage.UpdateCluster(int(intId), cluster.Servers)
 		if err!=nil {
 			response.WriteJson(w, http.StatusInternalServerError, response.GeneralError(err))
 			return

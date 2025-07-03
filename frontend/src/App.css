@@ -1,0 +1,162 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* App.css - custom styles for Cluster Portal */
+body {
+  background: #f6f8fa;
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+}
+.portal-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  padding: 32px 24px 24px 24px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.user-info {
+  font-size: 1rem;
+}
+.clusters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+.cluster-card {
+  background: #f3f6fa;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  padding: 24px 18px 18px 18px;
+  text-align: center;
+  position: relative;
+}
+.cluster-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.2rem;
+}
+.servers-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.servers-count {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d5be3;
+}
+.edit-btn {
+  background: none;
+  border: none;
+  color: #2d5be3;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 6px;
+}
+.edit-btn:hover {
+  color: #1a3a7a;
+}
+input[type="number"] {
+  width: 70px;
+  padding: 4px 8px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #bfc9d9;
+}
+button {
+  background: #2d5be3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 4px;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+.login-form {
+  background: #fff;
+  padding: 32px 28px;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 320px;
+}
+.login-form input {
+  padding: 8px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #bfc9d9;
+}
+.login-form button {
+  margin-top: 8px;
+}
+.error {
+  color: #e53935;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+.loading {
+  text-align: center;
+  color: #2d5be3;
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}

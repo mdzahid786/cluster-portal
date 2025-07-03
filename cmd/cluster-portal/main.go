@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"log/slog"
@@ -35,17 +36,28 @@ func main() {
 	router.Handle("GET /api/cluster/{id}", middleware.AuthMiddleware(users, http.HandlerFunc(cluster.GetByID(storage))))
 	//router.HandleFunc("GET /api/clusters/", cluster.GetClusters(storage))
 	router.Handle("GET /api/clusters/", middleware.AuthMiddleware(users, http.HandlerFunc(cluster.GetClusters(storage))))
-	
+	router.Handle("GET /api/me", middleware.AuthMiddleware(users, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		user, ok := middleware.GetAuthenticatedUser(r)
+		if !ok {
+			http.Error(w, "Unauthorized", http.StatusUnauthorized)
+			return
+		}
+		json.NewEncoder(w).Encode(user)
+	})))
+
+
 	adminHandler := middleware.AuthMiddleware(users,
     	middleware.AdminOnly(http.HandlerFunc(cluster.UpdateCluster(storage))),
 	)
 	router.Handle("PUT /api/cluster/{id}", adminHandler)
 	//router.HandleFunc("PUT /api/cluster/{id}", cluster.UpdateCluster(storage))
 	
+	corsRouter := middleware.CORS(router)
+
 	// server setup
 	server := http.Server{
 		Addr: cfg.HTTPServer.Addr,
-		Handler: router,
+		Handler: corsRouter,
 	}
 	slog.Info("Sever started", slog.String("Address", cfg.HTTPServer.Addr))
 

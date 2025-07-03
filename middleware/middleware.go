@@ -12,7 +12,7 @@ import (
 
 type contextKey string
 
-const userContextKey = contextKey("user")
+const UserContextKey  = contextKey("user")
 
 func AuthMiddleware(users []config.User, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +35,7 @@ func AuthMiddleware(users []config.User, next http.Handler) http.Handler {
 		for _, user := range users {
 			if user.Username == username && user.Password == password {
 				// Add user to context
-				ctx := context.WithValue(r.Context(), userContextKey, user)
+				ctx := context.WithValue(r.Context(), UserContextKey , user)
 				next.ServeHTTP(w, r.WithContext(ctx))
 				return
 			}
@@ -46,7 +46,7 @@ func AuthMiddleware(users []config.User, next http.Handler) http.Handler {
 }
 
 func GetAuthenticatedUser(r *http.Request) (config.User, bool) {
-	user, ok := r.Context().Value(userContextKey).(config.User)
+	user, ok := r.Context().Value(UserContextKey ).(config.User)
 	return user, ok
 }
 
