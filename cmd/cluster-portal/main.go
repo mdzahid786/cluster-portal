@@ -30,12 +30,6 @@ func main() {
 	// router setup
 	router := http.NewServeMux()
 
-	router.Handle("POST /api/cluster", middleware.AuthMiddleware(users, http.HandlerFunc(cluster.New(storage))))
-	//router.HandleFunc("POST /api/cluster", cluster.New(storage))
-	//router.HandleFunc("GET /api/cluster/{id}", cluster.GetByID(storage))
-	router.Handle("GET /api/cluster/{id}", middleware.AuthMiddleware(users, http.HandlerFunc(cluster.GetByID(storage))))
-	//router.HandleFunc("GET /api/clusters/", cluster.GetClusters(storage))
-	router.Handle("GET /api/clusters/", middleware.AuthMiddleware(users, http.HandlerFunc(cluster.GetClusters(storage))))
 	router.Handle("GET /api/me", middleware.AuthMiddleware(users, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		user, ok := middleware.GetAuthenticatedUser(r)
 		if !ok {
@@ -44,8 +38,13 @@ func main() {
 		}
 		json.NewEncoder(w).Encode(user)
 	})))
-
-
+	router.Handle("POST /api/cluster", middleware.AuthMiddleware(users, http.HandlerFunc(cluster.New(storage))))
+	//router.HandleFunc("POST /api/cluster", cluster.New(storage))
+	//router.HandleFunc("GET /api/cluster/{id}", cluster.GetByID(storage))
+	router.Handle("GET /api/cluster/{id}", middleware.AuthMiddleware(users, http.HandlerFunc(cluster.GetByID(storage))))
+	//router.HandleFunc("GET /api/clusters/", cluster.GetClusters(storage))
+	router.Handle("GET /api/clusters/", middleware.AuthMiddleware(users, http.HandlerFunc(cluster.GetClusters(storage))))
+	
 	adminHandler := middleware.AuthMiddleware(users,
     	middleware.AdminOnly(http.HandlerFunc(cluster.UpdateCluster(storage))),
 	)
@@ -53,7 +52,6 @@ func main() {
 	//router.HandleFunc("PUT /api/cluster/{id}", cluster.UpdateCluster(storage))
 	
 	corsRouter := middleware.CORS(router)
-
 	// server setup
 	server := http.Server{
 		Addr: cfg.HTTPServer.Addr,

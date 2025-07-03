@@ -71,7 +71,7 @@ function App() {
     <div className="portal-container">
       <header>
         <div className="h1-heading">
-          <h1>Cluster Portal</h1>
+          <h1>Cloud Cluster</h1>
         </div>
         <div className="user-info">
           Logged in as <b>{user.Username}</b> ({user.Role}){" "}
