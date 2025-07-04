@@ -31,10 +31,10 @@ export default function ClusterCard({ cluster, isAdmin, onUpdate }) {
               disabled={loading}
             />
             <button onClick={handleSave} disabled={loading}>
-              ✔
+              &#10004;
             </button>
             <button onClick={handleCancel} disabled={loading}>
-              ✖
+              &#10006;
             </button>
           </>
         ) : (
@@ -46,7 +46,7 @@ export default function ClusterCard({ cluster, isAdmin, onUpdate }) {
                 onClick={handleEdit}
                 title="Edit servers"
               >
-                ✎
+                &#9998;
               </button>
             )}
           </>

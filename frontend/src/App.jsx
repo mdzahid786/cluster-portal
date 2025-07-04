@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Login from "./Login";
 import ClusterCard from "./ClusterCard";
-
+const baseUrl = "http://localhost:8083";
 function App() {
   const [user, setUser] = useState(null);
   const [clusters, setClusters] = useState([]);
@@ -16,7 +16,7 @@ function App() {
     setLoading(true);
     const basicAuth = "Basic " + btoa(`${username}:${password}`);
     try {
-      const res = await fetch("http://localhost:8083/api/me", {
+      const res = await fetch(baseUrl + "/api/login", {
         headers: { Authorization: basicAuth },
       });
       if (!res.ok) throw new Error("Invalid credentials");
@@ -34,7 +34,7 @@ function App() {
   useEffect(() => {
     if (!auth) return;
     setLoading(true);
-    fetch("http://localhost:8083/api/clusters", {
+    fetch(baseUrl + "/api/clusters", {
       headers: { Authorization: auth },
     })
       .then((res) => res.json())
@@ -47,16 +47,16 @@ function App() {
   // Update cluster servers
   const handleUpdate = async (id, servers) => {
     setLoading(true);
-    await fetch(`http://localhost:8083/api/cluster/${id}`, {
+    await fetch(`${baseUrl}/api/cluster/${id}`, {
       method: "PUT",
       headers: {
         Authorization: auth,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ servers }),
+      body: JSON.stringify({ id, servers }),
     });
     // Refresh clusters
-    const res = await fetch("http://localhost:8083/api/clusters", {
+    const res = await fetch(baseUrl + "/api/clusters/", {
       headers: { Authorization: auth },
     });
     setClusters(await res.json());

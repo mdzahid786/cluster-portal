@@ -30,7 +30,7 @@ func main() {
 	// router setup
 	router := http.NewServeMux()
 
-	router.Handle("GET /api/me", middleware.AuthMiddleware(users, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	router.Handle("GET /api/login", middleware.AuthMiddleware(users, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		user, ok := middleware.GetAuthenticatedUser(r)
 		if !ok {
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
