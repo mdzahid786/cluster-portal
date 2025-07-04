@@ -3,7 +3,7 @@ To insert DB into the database of mysql run below command from root directory <b
 sh ./cmd/cluster-portal/run.sh<br>
 <br>
 Go to Root Folder and execute below command to run go server or backend server<br>
-go mod tidy<be>
+go mod tidy<br>
 go run ./cmd/cluster-portal/main.go --config ./config/local.yaml<br>
 <br><br>
 <b>Frontend::</b> <br><br>
