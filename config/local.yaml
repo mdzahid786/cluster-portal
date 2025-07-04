@@ -1,0 +1,15 @@
+env: "dev"
+#storage_path: "schema/init.sql"
+db_host: "localhost:3306"
+username: "root"
+password: ""
+dbname: "clusterdb"
+http_server:
+  address: "localhost:8083"
+users:
+  - username: admin
+    password: admin
+    role: admin
+  - username: readonly
+    password: readonly
+    role: readonly
