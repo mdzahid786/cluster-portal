@@ -160,3 +160,11 @@ button:disabled {
   font-size: 1.1rem;
   margin-bottom: 18px;
 }
+
+.invalid-feedback {
+  text-align: left;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
