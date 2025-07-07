@@ -1,12 +1,23 @@
-<b>Backend::</b> <br><br>
-To insert DB into the database of mysql run below command from root directory <br>
-sh ./cmd/cluster-portal/run.sh<br>
-<br>
-Go to Root Folder and execute below command to run go server or backend server<br>
-go mod tidy<br>
-go run ./cmd/cluster-portal/main.go --config ./config/local.yaml<br>
-<br><br>
-<b>Frontend::</b> <br><br>
-To start frontend server go to frontend directory and run below command<br>
-npm install<br>
-npm run dev<br>
+# Cluster Portal
+
+A full-stack application to manage and monitor server clusters. Built with **Express.js** (Node.js) for the backend and **React.js** for the frontend, with **Redis caching** and **MongoDB** as the primary database.
+
+## 🌐 Live Demo
+
+> Add link here if deployed (e.g., Vercel, Netlify, Render, etc.)
+
+---
+
+## 📦 Features
+
+- 🔐 User authentication (Basic Auth)
+- 🖥️ Manage cluster nodes (create, view, list, etc.)
+- ⚡ Fast API responses with Redis caching
+- 📁 MongoDB for persistent storage
+- 📘 RESTful API design
+- 🧪 Basic validation and error handling
+
+---
+
+## 📁 Project Structure
+
